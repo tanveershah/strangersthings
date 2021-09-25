@@ -1,18 +1,18 @@
 import axios from "axios";
-import {getToken} from '../auth'
+import { getToken } from "../auth";
 
 export const BASE_URL =
   "https://strangers-things.herokuapp.com/api/2106-UNF-RM-WEB-PT";
 
-export const getPosts = async () => {
+export const getPosts = async (setPosts) => {
   try {
-    const token = getToken()
+    const token = getToken();
     const { data } = await axios.get(`${BASE_URL}/posts`, {
       headers: {
-        'auth-token': token
-      }
+        "auth-token": token,
+      },
     });
-    return data;
+    setPosts(data.data.posts)
   } catch (error) {
     console.error(error.message);
   }
@@ -20,74 +20,82 @@ export const getPosts = async () => {
 
 export const loginUser = async (username, password) => {
   try {
-    const {data} = await axios.post(`${BASE_URL}/users/login`, {
+    const { data } = await axios.post(`${BASE_URL}/users/login`, {
       user: {
         username: username,
-        password: password
-      }
-    })
+        password: password,
+      },
+    });
 
-    return data
+    return data;
   } catch (error) {
-    console.error(error.message)
+    console.error(error.message);
   }
-}
+};
 
-export const registerUser=async (username, password)=>{
+export const registerUser = async (username, password) => {
   try {
-    const {data}= await axios.post(`${BASE_URL}/users/register`, {
+    const { data } = await axios.post(`${BASE_URL}/users/register`, {
       user: {
-        username, 
-        password
-      }
-    })
+        username,
+        password,
+      },
+    });
 
-    return data
+    return data;
   } catch (error) {
-    console.error(error.message)
+    console.error(error.message);
   }
-}
+};
 
-export const createPost =async(title, description, price, location, willDeliver)=>{
-  const token = getToken()
+export const addPost = async (
+  title,
+  description,
+  price,
+  location,
+  willDeliver
+) => {
+  const token = getToken();
 
   try {
-    const {data}=await axios.post(`${BASE_URL}/posts`, {
-      post: {
-        title,
-        description,
-        price,
-        location,
-        willDeliver
+    const { data } = await axios.post(
+      `${BASE_URL}/posts`,
+      {
+        post: {
+          title,
+          description,
+          price,
+          location,
+          willDeliver,
+        },
+      },
+      {
+        headers: {
+          "Content-Type": "application/JSON",
+          Authorization: `Bearer ${token}`,
+        },
       }
-    },
-    {
-      headers: {
-        'Content-Type': 'application/JSON',
-        'Authorization': `Bearer ${token}`
-      }
-    }
-    )
+    );
 
-    return description
+    return description;
   } catch (error) {
-    console.error(error.message)
+    console.error(error.message);
   }
-}
+};
 
-export const getUser=async ()=> {
-  const token = getToken()
+export const getUser = async () => {
+  const token = getToken();
 
   try {
-    const {data} =await axios.get(`${BASE_URL}/users/me`, {
+    const { data } = await axios.get(`${BASE_URL}/users/me`, {
       headers: {
-        'Content-Type': 'application/JSON',
-        'Authorization': `Bearer ${token}`
-      }
-    })
+        "Content-Type": "application/JSON",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-    return data
+    return data;
   } catch (error) {
-    console.error(error.message)
+    console.error(error.message);
   }
-}
+};

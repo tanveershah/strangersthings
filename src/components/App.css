@@ -22,7 +22,6 @@ body {
   display: grid;
   grid-template-rows: 5em 1fr 5em;
   height: 100vh;
- 
 }
 
 .main {
@@ -32,3 +31,4 @@ body {
   grid-template-columns: repeat(2, 1fr);
   font-size: 1.8em;
 }
+

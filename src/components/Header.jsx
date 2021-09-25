@@ -6,17 +6,19 @@ import { removeLocalUser } from "../auth";
 const Header = ({ isLoggedIn }) => {
   return (
     <div className="header">
+      <div className="logo">Stranger's Things</div>
       {isLoggedIn ? (
         <nav className="nav-bar">
-          <NavLink className="nav-link" to="/">Home</NavLink>
-          <NavLink className="nav-link" to="/newPost">Create a post</NavLink>
-          <NavLink className="nav-link" to="/" onClick={(event)=> removeLocalUser()}>Logout</NavLink>
+          <NavLink className="nav-link" exact to="/">Home</NavLink>
+          <NavLink activeClassName="current" className="nav-link" to="/newPost">Create a post</NavLink>
+          <NavLink activeClassName="current" className="nav-link" to="/login" onClick={(event)=> removeLocalUser()}>Logout</NavLink>
         </nav>
       ) : (
         <nav className="nav-bar">
-          <NavLink className="nav-link" to="/">Home</NavLink>
-          <NavLink className="nav-link" to="/">Login</NavLink>
-          <NavLink className="nav-link" to="/">Register</NavLink>
+          <NavLink activeClassName="current" className="nav-link" exact to="/">Home</NavLink>
+          <NavLink activeClassName="current" className="nav-link" to="/login">Login</NavLink>
+          <NavLink activeClassName="current" className="nav-link" to="/register">Register</NavLink>
+          <NavLink activeClassName="current" className="nav-link" to="/posts">Posts</NavLink>
         </nav>
       )}
     </div>
