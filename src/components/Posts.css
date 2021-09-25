@@ -1,0 +1,11 @@
+.post {
+    display: flex;
+    background-color: rgb(199, 166, 124);
+    box-shadow: 10px 5px 5px hsl(var(--hue), var(--saturation), var(--lightness));
+    color: hsl(var(--hue), var(--saturation), var(--lightness));
+    align-items: center;
+    justify-content: center;
+    margin: 1em;
+    padding: 1em;
+    flex-direction: column;
+}

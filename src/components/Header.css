@@ -1,0 +1,15 @@
+.header {
+  grid-row: 1;
+  color: white;
+  background: hsl(var(--hue), var(--saturation), var(--lightness));
+}
+
+.nav-bar {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+}
