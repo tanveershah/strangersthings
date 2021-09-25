@@ -10,15 +10,15 @@ const Header = ({ isLoggedIn }) => {
       {isLoggedIn ? (
         <nav className="nav-bar">
           <NavLink className="nav-link" exact to="/">Home</NavLink>
-          <NavLink activeClassName="current" className="nav-link" to="/newPost">Create a post</NavLink>
+          <NavLink activeClassName="current" className="nav-link" to="/addPost">Create a post</NavLink>
           <NavLink activeClassName="current" className="nav-link" to="/login" onClick={(event)=> removeLocalUser()}>Logout</NavLink>
         </nav>
       ) : (
         <nav className="nav-bar">
           <NavLink activeClassName="current" className="nav-link" exact to="/">Home</NavLink>
-          <NavLink activeClassName="current" className="nav-link" to="/login">Login</NavLink>
-          <NavLink activeClassName="current" className="nav-link" to="/register">Register</NavLink>
           <NavLink activeClassName="current" className="nav-link" to="/posts">Posts</NavLink>
+          {/* <NavLink activeClassName="current" className="nav-link" to="/register">Register</NavLink> */}
+          <NavLink activeClassName="current" className="nav-link" to="/login">Login</NavLink>
         </nav>
       )}
     </div>

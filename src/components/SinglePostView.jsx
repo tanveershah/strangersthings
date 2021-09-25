@@ -1,9 +1,9 @@
 import React from 'react'
-import {userParams} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import {SinglePost} from '../components'
 
 const SinglePostView =({posts}) =>{
-    const {postId}=userParams()
+    const {postId}=useParams()
     const postFound =posts.find(post=>post._id===postId)
 
     if(!postFound){

@@ -8,7 +8,7 @@ const Register = ({setIsLoggedIn, setIsLoading}) => {
     const [confirmPassword, setConfirmPassword]=useState('')
 
     return <>
-    <form id="register" onSubmit={event=>{
+    <form id="register" onSubmit={async(event)=>{
         event.preventDefault()
         setIsLoading(true)
 
