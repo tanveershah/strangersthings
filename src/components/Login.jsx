@@ -34,7 +34,7 @@ const [password, setPassword] = useState('')
   <input className="login-form" id="password" type='password' placeholder='enter password' value={password} onChange={(event)=> setPassword(event.target.value)} required/>
   </fieldset>
   <button className="login-button" type='submit'>Login</button>
-  <NavLink className="login-form" to="/register">Register new user</NavLink>
+  <NavLink className="login-form" to="/register">Register here</NavLink>
   </form>;
   </div>
 };

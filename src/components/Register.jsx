@@ -1,13 +1,14 @@
 import React, {useState} from 'react'
 import {registerUser} from '../api'
 import {addLocalUser} from '../auth'
+import './Login.css'
 
 const Register = ({setIsLoggedIn, setIsLoading}) => {
     const [usernmae, setUsername]=useState('')
     const [password, setPassword]=useState('')
     const [confirmPassword, setConfirmPassword]=useState('')
 
-    return <>
+    return <div className="login">
     <form id="register" onSubmit={async(event)=>{
         event.preventDefault()
         setIsLoading(true)
@@ -43,7 +44,7 @@ const Register = ({setIsLoggedIn, setIsLoading}) => {
 
     <button type="submit">Submit</button>
     </form>
-    </>
+    </div>
 }
 
 export default Register

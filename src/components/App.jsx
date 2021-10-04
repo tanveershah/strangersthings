@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Route, Switch, Redirect, NavLink } from "react-router-dom";
-import { Header, Footer, Login, Register, AddPost, Profile, Posts, SinglePost, SinglePostView } from "../components";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { Header, Footer, Login, Register, AddPost, Profile, Posts, Search, SinglePostView} from ".";
 import "./App.css";
 import { removeLocalUser, getToken } from "../auth";
-import { addPost, getPosts } from "../api";
+import { getPosts } from "../api";
 
 const App = () => {
   const [posts, setPosts] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [willDeliver, setDeliver]=useState(false)
+  const [title, setTitle] = useState('')
+  const [description, setDescription]=useState('')
+  const [price, setPrice]=useState('')
+  const [location, setLocation]=useState('')
 
   useEffect(()=>{
     getPosts(setPosts)
@@ -26,10 +31,24 @@ const App = () => {
       <div className="main">
         <Switch>
           <Route path="/posts/:postId">
-            <SinglePostView posts={posts}/>
+            <SinglePostView 
+            posts={posts}
+            setPosts={setPosts}
+            setIsLoading={setIsLoading}
+            willDeliver={willDeliver}
+            setDeliver={setDeliver}
+            title={title}
+            setTitle={setTitle}
+            description={description}
+            setDescription={setDescription}
+            price={price}
+            setPrice={setPrice}
+            location={location}
+            setLocation={setLocation}
+            />
           </Route>
           <Route exact path="/">
-            <Posts posts={posts} setPosts={setPosts}/>
+            <Search posts={posts} setPosts={setPosts}/>
           </Route>
           <Route path="/posts">
             <Posts posts={posts} />
@@ -39,9 +58,29 @@ const App = () => {
           </Route>
           <Route path="/register">
             <Register setIsLoading={setIsLoading} setIsLoggedIn={setIsLoggedIn} />
+          
           </Route>
           <Route path="/addPost">
-<addPost posts={posts} setPosts={setPosts} setIsLoading={setIsLoading} />
+<AddPost 
+posts={posts} 
+setPosts={setPosts} 
+setIsLoading={setIsLoading} 
+willDeliver={willDeliver}
+setDeliver={setDeliver}
+title={title}
+setTitle={setTitle}
+description={description}
+setDescription={setDescription}
+price={price}
+setPrice={setPrice}
+location={location}
+setLocation={setLocation}
+/>
+          </Route>
+  
+          <Route path="/profile">
+            <Profile/>
+
           </Route>
         </Switch>
       </div>

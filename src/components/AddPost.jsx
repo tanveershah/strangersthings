@@ -1,23 +1,19 @@
 import React, {useState} from 'react'
 import {addPost} from '../api'
+import './Login.css'
 
-const AddPost= ({posts, setPosts, setIsLoading})=>{
-    const [willDeliver, setWillDeliver]=useState(false)
-    const [title, setTitle]=useState('')
-    const [description, setDescription]=useState('')
-    const [price, setPrice]=useState('')
-    const [location, setLocation]=useState('')
+const AddPost= ({posts, setPosts, setIsLoading, willDeliver, setDeliver, title, setTitle, description, setDescription, price, setPrice, location, setLocation})=>{
 
-    return <>
+    return <div className="login">
     <h2>Sell a thing</h2>
-    <form id="addPost" onSubmit={async(event)=>{
+    <form id="addPost"  onSubmit={async(event)=>{
         event.preventDefault()
         setIsLoading(true)
 
         try {
             const {data}=await addPost(title, description, price, location, willDeliver)
-            const postsCopy = [...posts]
-            setPosts([...postsCopy, data.post])
+            
+            setPosts([...posts, data.post])
         } catch (error) {
             console.error(error.message)
         } finally {
@@ -43,12 +39,12 @@ const AddPost= ({posts, setPosts, setIsLoading})=>{
         </fieldset>
         <fieldset>
             <label htmlFor="willDeliver">Willing to Deliver</label>
-            <input id="willDeliver" type="checkbox" value={willDeliver} onChange={event=> setWillDeliver(!willDeliver)} />
+            <input id="willDeliver" type="checkbox" value={willDeliver} onChange={event=> setDeliver(!willDeliver)} />
         </fieldset>
 
         <button type="submit">Add Post</button>
     </form>
-    </>
+    </div>
 }
 
 export default AddPost
